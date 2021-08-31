@@ -1,0 +1,24 @@
+<div>
+    <div class="test-header">
+        <div class="example-section">
+          <button (click)="saveState()">Save State</button>
+          <button (click)="restoreState()">Restore State</button>
+          <button (click)="resetState()">Reset State</button>
+          <button (click)="getCurrentData()">Get current data</button>
+          <select name="cars" id="cars" (change)="selectState($event)">
+            <option value=""></option>
+            <option value="0">Prev State</option>
+          </select>
+        </div>
+      </div>
+    <ag-grid-angular #agGrid style="width: 100%; height: calc(100vh - 120px)" id="myGrid" class="ag-theme-alpine" [modules]="modules"
+        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef"
+        [groupIncludeFooter]="true"
+        [sideBar]="sideBar" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+</div>
+<style>
+
+
+
+
+</style>
