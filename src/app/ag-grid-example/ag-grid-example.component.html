@@ -1,4 +1,4 @@
-<div>
+
     <div class="test-header">
         <div class="example-section">
           <button (click)="saveState()">Save State</button>
@@ -12,13 +12,6 @@
         </div>
       </div>
     <ag-grid-angular #agGrid style="width: 100%; height: calc(100vh - 120px)" id="myGrid" class="ag-theme-alpine" [modules]="modules"
-        [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef"
+        [columnDefs]="columnDefs" (filterChanged)="filterChanged()" [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef"
         [groupIncludeFooter]="true"
         [sideBar]="sideBar" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
-</div>
-<style>
-
-
-
-
-</style>

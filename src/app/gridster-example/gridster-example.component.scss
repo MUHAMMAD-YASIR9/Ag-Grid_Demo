@@ -1,0 +1,23 @@
+.gridster {
+    z-index: -100;
+}
+
+::ng-deep {
+    .gridster-item-content+.item-buttons {
+        position: absolute;
+        top     : 10px;
+        left    : 10px;
+        z-index : 1;
+    }
+
+    .gridster-item-content+.item-buttons button {
+        margin-right: 10px
+    }
+
+    gridster-item.gridMobileAutoHeight {
+        height: auto !important;
+    }
+    .transparent{
+        background: transparent;
+    }
+}

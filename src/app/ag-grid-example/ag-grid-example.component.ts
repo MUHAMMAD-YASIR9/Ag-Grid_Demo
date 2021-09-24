@@ -24,14 +24,17 @@ export class AgGridExampleComponent {
         field: 'country',
         rowGroup: true,
         enableRowGroup: true,
+        filter:true, filterParams: { applyButton: true, newRowsAction: 'keep' }
       },
       {
         field: 'year',
         rowGroup: true,
         enableRowGroup: true,
         enablePivot: true,
+        filter:true
       },
-      { field: 'date' },
+      { field: 'date',
+      filter:true },
       { field: 'sport' },
       {
         field: 'gold',
@@ -47,7 +50,7 @@ export class AgGridExampleComponent {
       },
     ];
     this.defaultColDef = {
-      flex: 1,
+      flex: 8,
       minWidth: 150,
       sortable: true,
       resizable: true,
@@ -159,5 +162,9 @@ export class AgGridExampleComponent {
     console.log("Columns state",this.dataStates);
     this.gridColumnApi.applyColumnState({ state:  this.dataStates[val.target.value],  applyOrder: true });
     console.log("select state", val.target.value)
+  }
+  filterChanged() {
+    var savedFilterModel = this.gridApi.getFilterModel();
+    console.log("Saved filters,",savedFilterModel);
   }
 }

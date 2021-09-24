@@ -1,0 +1,106 @@
+<!-- <div class="options">
+  <a mat-raised-button href="https://github.com/tiberiuzuld/angular-gridster2/tree/master/src/app/sections/home"
+    target="_blank" class="source-code-button">
+    <mat-icon>open_in_new</mat-icon>
+    Source
+  </a>
+</div>
+<div class="options-header">
+  <mat-form-field>
+    <mat-select aria-label="Grid type" [(ngModel)]="options.gridType" (ngModelChange)="changedOptions()"
+      placeholder="Grid Type">
+      <mat-option value="fit">Fit to screen</mat-option>
+      <mat-option value="scrollVertical">Scroll Vertical</mat-option>
+      <mat-option value="scrollHorizontal">Scroll Horizontal</mat-option>
+      <mat-option value="fixed">Fixed</mat-option>
+      <mat-option value="verticalFixed">Vertical Fixed</mat-option>
+      <mat-option value="horizontalFixed">Horizontal Fixed</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select aria-label="Display grid lines" [(ngModel)]="options.displayGrid" placeholder="Display grid lines"
+      (ngModelChange)="changedOptions()">
+      <mat-option value="always">Always</mat-option>
+      <mat-option value="onDrag&Resize">On Drag & Resize</mat-option>
+      <mat-option value="none">None</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="options.swap" (ngModelChange)="changedOptions()">
+    Swap Items
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="options.pushItems" (ngModelChange)="changedOptions()">
+    Push Items
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="options.draggable.enabled" *ngIf="options.draggable" (ngModelChange)="changedOptions()">
+    Drag Items
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="options.resizable.enabled" *ngIf="options.resizable" (ngModelChange)="changedOptions()">
+    Resize Items
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="options.pushResizeItems" (ngModelChange)="changedOptions()">
+    Push Resize Items
+  </mat-checkbox>
+  <mat-form-field>
+    <input matInput [(ngModel)]="options.margin" min="0" max="30" step="1" type="number" placeholder="Margin"
+      (ngModelChange)="changedOptions()">
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="options.outerMargin" (ngModelChange)="changedOptions()">Outer Margin</mat-checkbox>
+  <mat-form-field>
+    <input matInput [(ngModel)]="options.mobileBreakpoint" type="number" placeholder="Mobile Breakpoint"
+      (ngModelChange)="changedOptions()">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="options.fixedColWidth" type="number" placeholder="Fixed Col Width"
+      (ngModelChange)="changedOptions()">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="options.fixedRowHeight" type="number" placeholder="Fixed Row Height"
+      (ngModelChange)="changedOptions()">
+  </mat-form-field>
+  <button mat-mini-fab (click)="addItem()" class="add-button cols-2">
+    <mat-icon>add</mat-icon>
+  </button>
+</div> -->
+<div class="class" style="display: flex;justify-content: space-between;padding: 0 20px;">
+  <p>
+    Dashboard
+  </p>
+  <p>
+  <mat-slide-toggle (change)="toggle($event.checked)">Edit Mode</mat-slide-toggle>
+  
+</p>
+</div>
+<div style="height: calc(100vh - 120px);overflow: auto;">
+  <gridster [options]="options" >
+    <gridster-item [item]="item" *ngFor="let item of dashboard" [class.gridMobileAutoHeight]="item.id==2" [class.transparent]="item.id==1">
+      <div class="button-holder">
+        <div class="gridster-item-content" *ngIf="item.hasContent && item.id==2" id="">
+          <div class="stuff" style="background-color: peru;" [style.width]="setWidth" [style.height.px]="setHeight">
+  
+            <ag-grid-angular #agGrid style="height: 100%; width: 100%;" id="myGrid" class="{{agClass}}"
+              [modules]="modules" [columnDefs]="columnDefs" (filterChanged)="filterChanged()"
+              [defaultColDef]="defaultColDef" [autoGroupColumnDef]="autoGroupColumnDef" [groupIncludeFooter]="true"
+              [sideBar]="sideBar" [rowData]="rowData" (gridReady)="onGridReady($event)"></ag-grid-angular>
+          </div>
+        </div>
+        <div fxLayout *ngIf="!item.hasContent && item.id==1">
+          <div class="item primary" style="width: 25%; margin-right: 10px; height: 100vh;">1. One</div>
+          <div class="item primary" style="width: 25%; margin-right: 10px; height: 100vh;">2. Two</div>
+          <div class="item primary" style="width: 25%; margin-right: 10px; height: 100vh;">3. Three</div>
+          <div class="item primary" style="width: 25%; height: 100vh;">4. Four</div>
+        </div>
+        <div class="item-buttons" *ngIf="options.draggable.enabled">
+          <button mat-icon-button mat-raised-button class="drag-handler">
+            <mat-icon>open_with</mat-icon>
+          </button>
+          <button mat-icon-button mat-raised-button class="remove-button" (mousedown)="removeItem($event, item)"
+            (touchstart)="removeItem($event, item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </gridster-item>
+  </gridster>
+</div>
